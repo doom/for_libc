@@ -2,9 +2,7 @@
 ** Created by doom on 09/09/18.
 */
 
-#include <test_helpers/ut_utils.h>
-#define ut_on_fail(x)           ut_write(1, x, sizeof(x) - 1)
-#include <test_helpers/tests.h>
+#include <test_helpers/ut_config.h>
 
 #include <x86_64/_types/_uint8_t.h>
 #include <x86_64/_types/_uint16_t.h>

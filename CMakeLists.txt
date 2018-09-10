@@ -16,6 +16,9 @@ set(LIB_SOURCES
         include/x86_64/_types/_intptr_t.h include/x86_64/_types/_uintptr_t.h
         include/x86_64/_types/_ssize_t.h include/x86_64/_types/_size_t.h
         include/x86_64/_endian.h include/x86_64/_limits.h
+
+        include/limits.h
+        include/endian.h
         )
 
 add_executable(for_libc-tests
@@ -24,9 +27,11 @@ add_executable(for_libc-tests
         tests/test_helpers/start.c
         tests/test_helpers/ut_assert.h
         tests/test_helpers/ut_utils.h
-        tests/test_helpers/tests.h
+        tests/test_helpers/ut_tests.h
+        tests/test_helpers/ut_config.h
         tests/tests-main.c
         tests/tests-x86_64.c
+        tests/tests-limits.c
         )
 
 target_include_directories(for_libc-tests SYSTEM PUBLIC include include/x86_64 tests)
