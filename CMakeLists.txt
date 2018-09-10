@@ -19,6 +19,9 @@ set(LIB_SOURCES
 
         include/limits.h
         include/endian.h
+        include/stdbool.h
+        include/stddef.h
+        include/stdint.h
         )
 
 add_executable(for_libc-tests
@@ -32,6 +35,8 @@ add_executable(for_libc-tests
         tests/tests-main.c
         tests/tests-x86_64.c
         tests/tests-limits.c
+        tests/tests-stddef.c
+        tests/tests-stdint.c
         )
 
 target_include_directories(for_libc-tests SYSTEM PUBLIC include include/x86_64 tests)
