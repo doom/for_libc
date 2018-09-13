@@ -7,7 +7,12 @@
 
 #include <test_helpers/ut_utils.h>
 
-#define ut_on_fail(x)           ut_write(1, x, sizeof(x) - 1)
+#define ut_on_fail(x)                                                       \
+    do {                                                                    \
+        ut_write(1, __FILE__ ": ", sizeof(__FILE__) - 1 + 2);               \
+        ut_write(1, x, sizeof(x) - 1);                                      \
+        ut_exit(1);                                                         \
+    } while (0)
 
 #include <test_helpers/ut_tests.h>
 

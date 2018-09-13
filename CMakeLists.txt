@@ -22,10 +22,34 @@ set(LIB_SOURCES
         include/stdbool.h
         include/stddef.h
         include/stdint.h
+
+        include/stdlib.h
+
+        include/string.h
+        src/string/strcmp.c
+        src/string/strncmp.c
+        src/string/strlen.c
+        src/string/strnlen.c
+        src/string/strcpy.c
+        src/string/strncpy.c
+        src/string/stpcpy.c
+        src/string/strcat.c
+        src/string/strncat.c
+        src/string/memcmp.c
+        src/string/memcpy.c
+        src/string/memchr.c
+        src/string/mempcpy.c
+        src/string/memmove.c
+        src/string/memset.c
         )
 
+add_library(for_libc SHARED ${LIB_SOURCES})
+add_library(for_libc-static STATIC ${LIB_SOURCES})
+
+target_include_directories(for_libc SYSTEM PUBLIC include include/x86_64)
+target_include_directories(for_libc-static SYSTEM PUBLIC include include/x86_64)
+
 add_executable(for_libc-tests
-        ${LIB_SOURCES}
         tests/test_helpers/ut_utils.c
         tests/test_helpers/start.c
         tests/test_helpers/ut_assert.h
@@ -37,6 +61,8 @@ add_executable(for_libc-tests
         tests/tests-limits.c
         tests/tests-stddef.c
         tests/tests-stdint.c
+        tests/tests-string.c
         )
 
 target_include_directories(for_libc-tests SYSTEM PUBLIC include include/x86_64 tests)
+target_link_libraries(for_libc-tests for_libc-static)
