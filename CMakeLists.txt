@@ -41,6 +41,9 @@ set(LIB_SOURCES
         src/string/mempcpy.c
         src/string/memmove.c
         src/string/memset.c
+
+        include/ctype.h
+        src/ctype/ctype.c
         )
 
 add_library(for_libc SHARED ${LIB_SOURCES})
@@ -62,6 +65,7 @@ add_executable(for_libc-tests
         tests/tests-stddef.c
         tests/tests-stdint.c
         tests/tests-string.c
+        tests/tests-ctype.c
         )
 
 target_include_directories(for_libc-tests SYSTEM PUBLIC include include/x86_64 tests)
