@@ -44,6 +44,10 @@ set(LIB_SOURCES
 
         include/ctype.h
         src/ctype/ctype.c
+
+        include/strings.h
+        src/strings/strcasecmp.c
+        src/strings/strncasecmp.c
         )
 
 add_library(for_libc SHARED ${LIB_SOURCES})
@@ -66,6 +70,7 @@ add_executable(for_libc-tests
         tests/tests-stdint.c
         tests/tests-string.c
         tests/tests-ctype.c
+        tests/tests-strings.c
         )
 
 target_include_directories(for_libc-tests SYSTEM PUBLIC include include/x86_64 tests)
