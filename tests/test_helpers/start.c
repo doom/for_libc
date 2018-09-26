@@ -6,7 +6,7 @@
 
 int main(void);
 
-void _start(void)
+__attribute__((force_align_arg_pointer)) void _start(void)
 {
     int ret = main();
 
