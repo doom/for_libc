@@ -4,7 +4,7 @@ project(for_libc)
 
 set(CMAKE_C_STANDARD 11)
 
-set(CMAKE_C_FLAGS "-Wall -Wextra -nostdlib -nostdinc -fno-builtin")
+set(CMAKE_C_FLAGS "-Wall -Wextra -nostdlib -nostdinc -fno-builtin -O3")
 
 set(LIB_SOURCES
         include/x86_64/_types/_ptrdiff_t.h
@@ -48,6 +48,12 @@ set(LIB_SOURCES
         include/strings.h
         src/strings/strcasecmp.c
         src/strings/strncasecmp.c
+
+        include/pfmt/pfmt.h
+        include/stdio.h
+        include/stdarg.h
+        src/pfmt/pfmt.c
+        src/stdio/sprintf.c
         )
 
 add_library(for_libc SHARED ${LIB_SOURCES})
@@ -62,6 +68,7 @@ add_executable(for_libc-tests
         tests/test_helpers/ut_assert.h
         tests/test_helpers/ut_utils.h
         tests/test_helpers/ut_tests.h
+        tests/test_helpers/ut_printf_impl.c
         tests/test_helpers/ut_config.h
         tests/tests-main.c
         tests/tests-x86_64.c
@@ -71,6 +78,7 @@ add_executable(for_libc-tests
         tests/tests-string.c
         tests/tests-ctype.c
         tests/tests-strings.c
+        tests/tests-stdio.c
         )
 
 target_include_directories(for_libc-tests SYSTEM PUBLIC include include/x86_64 tests)

@@ -9,6 +9,7 @@ void run_stdint_tests(void);
 void run_string_tests(void);
 void run_ctype_tests(void);
 void run_strings_tests(void);
+void run_stdio_tests(void);
 
 int main(void)
 {
@@ -25,6 +26,8 @@ int main(void)
     run_ctype_tests();
 
     run_strings_tests();
+
+    run_stdio_tests();
 
     return 0;
 }
