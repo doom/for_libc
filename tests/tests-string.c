@@ -47,6 +47,31 @@ ut_test(strchr)
     }
 }
 
+ut_test(strstr)
+{
+    const char *str = "abcdefghijklmnopqrstuvwxyz";
+    const char *ptr = str;
+
+    while (*ptr) {
+        const char *ptr2 = str;
+        while (*ptr2) {
+            if (ptr2 < ptr) {
+                ut_assert_eq(strstr(ptr, ptr2), NULL);
+            } else {
+                ut_assert_eq(strstr(ptr, ptr2), ptr2);
+            }
+            ++ptr2;
+        }
+        ut_assert_eq(strstr(ptr, ""), ptr);
+        ut_assert_eq(strstr(ptr, "_"), NULL);
+        ++ptr;
+    }
+    ut_assert_eq(strstr("lala", "lalala"), NULL);
+    str = "lalalalalalalab";
+    ut_assert_eq(strstr(str, "ab"), str + 13);
+}
+
+
 ut_test(strlen)
 {
     const char s[] = "abcdefghijklmn";
@@ -272,6 +297,8 @@ ut_test(memset)
 ut_group(string,
          ut_get_test(strcmp),
          ut_get_test(strncmp),
+         ut_get_test(strchr),
+         ut_get_test(strstr),
          ut_get_test(strlen),
          ut_get_test(strnlen),
          ut_get_test(strcpy),
