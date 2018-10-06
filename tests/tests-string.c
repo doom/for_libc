@@ -30,6 +30,23 @@ ut_test(strncmp)
     ut_assert_eq(strncmp("a", "b", 0), 0);
 }
 
+ut_test(strchr)
+{
+    const char *str = "abcdefghijklmnopqrstuvwxyz";
+    const char *ptr = str;
+
+    while (*ptr) {
+        const char *ptr2 = ptr;
+        while (*ptr2) {
+            ut_assert_eq(strchr(ptr, *ptr2), ptr2);
+            ++ptr2;
+        }
+        ut_assert_eq(strchr(ptr, '\0'), ptr2);
+        ut_assert_eq(strchr(ptr, '_'), NULL);
+        ++ptr;
+    }
+}
+
 ut_test(strlen)
 {
     const char s[] = "abcdefghijklmn";
