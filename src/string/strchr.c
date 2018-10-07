@@ -28,9 +28,7 @@ char *strchr(const char *str, char c)
 
     cur32 = (const uint32_t *)str;
     while (1) {
-        const uint32_t result = ((*cur32 ^ xor_c) - sub) & mask;
-
-        if (result != 0) {
+        if (((*cur32 - sub) & mask) || (((*cur32 ^ xor_c) - sub) & mask)) {
             str = (const char *)cur32;
 
             if (str[0] == c)
