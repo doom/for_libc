@@ -47,6 +47,16 @@ ut_test(strchr)
     }
 }
 
+ut_test(strrchr)
+{
+    const char *str = "Hellohellohellohello";
+
+    ut_assert_eq(strrchr(str, 'o'), str + 19);
+    ut_assert_eq(strrchr(str, 'l'), str + 18);
+    ut_assert_eq(strrchr(str, 'H'), str);
+    ut_assert_eq(strrchr(str, 'O'), NULL);
+}
+
 ut_test(strstr)
 {
     const char *str = "abcdefghijklmnopqrstuvwxyz";
@@ -330,6 +340,7 @@ ut_group(string,
          ut_get_test(strcmp),
          ut_get_test(strncmp),
          ut_get_test(strchr),
+         ut_get_test(strrchr),
          ut_get_test(strstr),
          ut_get_test(strlen),
          ut_get_test(strnlen),

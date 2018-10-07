@@ -45,6 +45,8 @@ int strncmp(const char *s1, const char *s2, size_t n);
 
 char *strchr(const char *str, char c);
 
+char *strrchr(const char *str, char c);
+
 char *strstr(const char *haystack, const char *needle);
 
 size_t strcspn(const char *s, const char *reject);
