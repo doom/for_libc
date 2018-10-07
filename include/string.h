@@ -51,4 +51,6 @@ size_t strcspn(const char *s, const char *reject);
 
 size_t strspn(const char *s, const char *accept);
 
+char *strpbrk(const char *s, const char *accept);
+
 #endif /* !FOR_LIBC_STRING_H */

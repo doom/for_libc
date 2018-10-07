@@ -215,6 +215,19 @@ ut_test(strcspn)
     ut_assert_eq(strcspn("", "azerty"), 0);
 }
 
+ut_test(strpbrk)
+{
+    const char *str = "1234abc2135";
+
+    ut_assert_eq(strpbrk(str, "0123456789"), str);
+    ut_assert_eq(strpbrk(str, "abc"), str + 4);
+    ut_assert_eq(strpbrk(str, "()"), NULL);
+    ut_assert_eq(strpbrk(str, "5"), str + 10);
+
+    ut_assert_eq(strpbrk("", ""), NULL);
+    ut_assert_eq(strpbrk("", "azer"), NULL);
+}
+
 ut_test(memcmp)
 {
     ut_assert_lt(memcmp("abcde", "abcdz", 5), 0);
@@ -327,6 +340,7 @@ ut_group(string,
          ut_get_test(strncat),
          ut_get_test(strspn),
          ut_get_test(strcspn),
+         ut_get_test(strpbrk),
          ut_get_test(memcmp),
          ut_get_test(memchr),
          ut_get_test(memcpy),
