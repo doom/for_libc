@@ -196,6 +196,25 @@ ut_test(strncat)
     ut_assert_eq(s[6], '\0');
 }
 
+ut_test(strspn)
+{
+    ut_assert_eq(strspn("1234abc213", "0123456789"), 4);
+    ut_assert_eq(strspn("1234abc213", "abc"), 0);
+    ut_assert_eq(strspn("", ""), 0);
+    ut_assert_eq(strspn("", "azerty"), 0);
+    ut_assert_eq(strspn("azerty", ""), 0);
+}
+
+ut_test(strcspn)
+{
+    ut_assert_eq(strcspn("1234abc213", "abcdef"), 4);
+    ut_assert_eq(strcspn("1234abc213", ""), 10);
+    ut_assert_eq(strcspn("1234abc213", "zzzzzv"), 10);
+    ut_assert_eq(strcspn("1234abc213", "1234"), 0);
+    ut_assert_eq(strcspn("", ""), 0);
+    ut_assert_eq(strcspn("", "azerty"), 0);
+}
+
 ut_test(memcmp)
 {
     ut_assert_lt(memcmp("abcde", "abcdz", 5), 0);
@@ -306,6 +325,8 @@ ut_group(string,
          ut_get_test(stpcpy),
          ut_get_test(strcat),
          ut_get_test(strncat),
+         ut_get_test(strspn),
+         ut_get_test(strcspn),
          ut_get_test(memcmp),
          ut_get_test(memchr),
          ut_get_test(memcpy),

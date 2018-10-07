@@ -47,4 +47,8 @@ char *strchr(const char *str, char c);
 
 char *strstr(const char *haystack, const char *needle);
 
+size_t strcspn(const char *s, const char *reject);
+
+size_t strspn(const char *s, const char *accept);
+
 #endif /* !FOR_LIBC_STRING_H */

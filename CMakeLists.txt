@@ -37,6 +37,8 @@ set(LIB_SOURCES
         src/string/strncat.c
         src/string/strchr.c
         src/string/strstr.c
+        src/string/strcspn.c
+        src/string/strspn.c
         src/string/memcmp.c
         src/string/memcpy.c
         src/string/memchr.c
