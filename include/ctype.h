@@ -5,6 +5,10 @@
 #ifndef FOR_LIBC_CTYPE_H
 #define FOR_LIBC_CTYPE_H
 
+#include "_config.h"
+
+C_LINKAGE_BEGIN
+
 #ifndef __CTYPE_FUNCTION_STORAGE
 #define __CTYPE_FUNCTION_STORAGE    static inline
 #endif
@@ -91,5 +95,7 @@ __CTYPE_FUNCTION_STORAGE int toupper(int c)
 }
 
 #undef __CTYPE_FUNCTION_STORAGE
+
+C_LINKAGE_END
 
 #endif /* !FOR_LIBC_CTYPE_H */

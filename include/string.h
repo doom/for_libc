@@ -6,6 +6,9 @@
 #define FOR_LIBC_STRING_H
 
 #include <stddef.h>
+#include "_config.h"
+
+C_LINKAGE_BEGIN
 
 void *memcpy(void *dest, const void *src, size_t n);
 
@@ -54,5 +57,7 @@ size_t strcspn(const char *s, const char *reject);
 size_t strspn(const char *s, const char *accept);
 
 char *strpbrk(const char *s, const char *accept);
+
+C_LINKAGE_END
 
 #endif /* !FOR_LIBC_STRING_H */

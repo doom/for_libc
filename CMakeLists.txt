@@ -17,6 +17,8 @@ set(LIB_SOURCES
         include/x86_64/_types/_ssize_t.h include/x86_64/_types/_size_t.h
         include/x86_64/_endian.h include/x86_64/_limits.h
 
+        include/_config.h
+
         include/limits.h
         include/endian.h
         include/stdbool.h
