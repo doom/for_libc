@@ -7,6 +7,11 @@
 
 #include "ut_utils.h"
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
 int ut_printf_impl(const char *fmt, ...);
 
 #define ut_printf(fmt, ...)         ut_printf_impl(fmt, ##__VA_ARGS__)
@@ -25,5 +30,9 @@ int ut_printf_impl(const char *fmt, ...);
     } while (0)
 
 #include "ut_tests.h"
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !FOR_LIBC_UT_CONFIG_H */
