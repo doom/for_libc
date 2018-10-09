@@ -5,7 +5,7 @@
 #ifndef FOR_LIBC_UT_CONFIG_H
 #define FOR_LIBC_UT_CONFIG_H
 
-#include <test_helpers/ut_utils.h>
+#include "ut_utils.h"
 
 int ut_printf_impl(const char *fmt, ...);
 
@@ -24,6 +24,6 @@ int ut_printf_impl(const char *fmt, ...);
         ut_exit(1);                                                         \
     } while (0)
 
-#include <test_helpers/ut_tests.h>
+#include "ut_tests.h"
 
 #endif /* !FOR_LIBC_UT_CONFIG_H */

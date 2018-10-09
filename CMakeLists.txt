@@ -70,14 +70,19 @@ add_library(for_libc-static STATIC ${LIB_SOURCES})
 target_include_directories(for_libc SYSTEM PUBLIC include include/x86_64)
 target_include_directories(for_libc-static SYSTEM PUBLIC include include/x86_64)
 
+add_library(ut STATIC
+        lib/ut/include/ut_utils.h
+        lib/ut/include/ut_tests.h
+        lib/ut/include/ut_config.h
+        lib/ut/src/ut_utils.c
+        lib/ut/src/start.c
+        lib/ut/src/ut_printf_impl.c
+        )
+
+target_include_directories(ut PUBLIC lib/ut/include)
+target_link_libraries(ut for_libc-static)
+
 add_executable(for_libc-tests
-        tests/test_helpers/ut_utils.c
-        tests/test_helpers/start.c
-        tests/test_helpers/ut_assert.h
-        tests/test_helpers/ut_utils.h
-        tests/test_helpers/ut_tests.h
-        tests/test_helpers/ut_printf_impl.c
-        tests/test_helpers/ut_config.h
         tests/tests-main.c
         tests/tests-x86_64.c
         tests/tests-limits.c
@@ -89,5 +94,5 @@ add_executable(for_libc-tests
         tests/tests-stdio.c
         )
 
-target_include_directories(for_libc-tests SYSTEM PUBLIC include include/x86_64 tests)
-target_link_libraries(for_libc-tests for_libc-static)
+target_include_directories(for_libc-tests SYSTEM PUBLIC include include/x86_64)
+target_link_libraries(for_libc-tests for_libc-static ut)

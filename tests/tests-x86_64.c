@@ -2,7 +2,7 @@
 ** Created by doom on 09/09/18.
 */
 
-#include <test_helpers/ut_config.h>
+#include "../lib/ut/include/ut_config.h"
 
 #include <x86_64/_types/_uint8_t.h>
 #include <x86_64/_types/_uint16_t.h>

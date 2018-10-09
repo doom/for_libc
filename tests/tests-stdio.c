@@ -2,7 +2,7 @@
 ** Created by doom on 15/09/18.
 */
 
-#include <test_helpers/ut_config.h>
+#include <ut_config.h>
 
 #include <string.h>
 #include <stdio.h>
