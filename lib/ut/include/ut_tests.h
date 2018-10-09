@@ -73,7 +73,7 @@ typedef struct
     ut_set_color(RED);                                                      \
     ut_printf("\nfailure: ");                                               \
     ut_set_color(WHITE);                                                    \
-    ut_printf("%14s", __ut_FILE ":"__ut_LINE ": expected " msg "\n");       \
+    ut_printf("%14s", __ut_FILE ":" __ut_LINE ": expected " msg "\n");      \
     return;
 
 #define __ut_test_passed()                                                  \
