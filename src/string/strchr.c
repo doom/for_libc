@@ -11,7 +11,7 @@
  * This works just like strlen (see strlen.c), but also XORs the searched character to make it a zero.
  * That way, we match '\0' and the searched character at once.
  */
-char *strchr(const char *str, char c)
+char *strchr(const char *str, int c)
 {
     const uint32_t mask = 0x80808080;
     const uint32_t sub = 0x01010101;
