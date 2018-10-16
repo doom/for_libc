@@ -119,6 +119,19 @@ typedef struct
 #define ut_assert_le(a, b)                                                  \
     __ut_assert_rel(a, <=, b, " to be lesser than or equal to ")
 
+#define ut_assert_throw(expr, ex)                                           \
+    ({                                                                      \
+        bool __did_throw = false;                                           \
+        try {                                                               \
+            expr;                                                           \
+        } catch (const ex &) {                                              \
+            __did_throw = true;                                             \
+        } catch (...) {                                                     \
+                                                                            \
+        }                                                                   \
+        __ut_test_failed_if(!__did_throw, #expr " to throw " #ex);          \
+    })
+
 #define __ut_groupname(name)        __group_##name
 
 #define ut_declare_group(name)      extern ut_group_t __ut_groupname(name);
