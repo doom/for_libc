@@ -44,7 +44,7 @@ typedef struct
 {
     const char *name;
     unsigned int nbtests;
-    ut_test_t *const tests[];
+    ut_test_t *const *tests;
 } ut_group_t;
 
 #define __ut_testimpl(name)         __testimpl_##name
@@ -137,10 +137,12 @@ typedef struct
 #define ut_declare_group(name)      extern ut_group_t __ut_groupname(name);
 
 #define ut_group(name, ...)                                                 \
+    ut_test_t *const name##_tests_array[] = {__VA_ARGS__};                  \
+                                                                            \
     const ut_group_t __ut_groupname(name) = {                               \
         #name,                                                              \
-        ut_sizeof_array(((const ut_test_t *[]){__VA_ARGS__})),              \
-        {__VA_ARGS__},                                                      \
+        ut_sizeof_array(name##_tests_array),                                \
+        name##_tests_array,                                                 \
     }
 
 #define ut_get_group(name)          (&__ut_groupname(name))
