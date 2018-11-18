@@ -7,6 +7,7 @@
 
 #include <_types/_size_t.h>
 #include <_types/_ptrdiff_t.h>
+#include <_types/_max_align_t.h>
 
 #ifndef __cplusplus
 #define NULL    ((void *)0)
