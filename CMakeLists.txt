@@ -26,6 +26,7 @@ set(LIB_SOURCES
         include/stdint.h
 
         include/stdlib.h
+        src/stdlib/atoi.c
 
         include/string.h
         src/string/strcmp.c
@@ -43,6 +44,7 @@ set(LIB_SOURCES
         src/string/strcspn.c
         src/string/strspn.c
         src/string/strpbrk.c
+        src/string/strtok.c
         src/string/memcmp.c
         src/string/memcpy.c
         src/string/memchr.c
@@ -62,8 +64,9 @@ set(LIB_SOURCES
         include/stdarg.h
         src/pfmt/pfmt.c
         src/stdio/sprintf.c
-        src/stdlib/atoi.c
-        src/string/strtok.c
+
+        include/errno.h
+        src/stdlib/errno.c
         )
 
 add_library(for_libc SHARED ${LIB_SOURCES})
