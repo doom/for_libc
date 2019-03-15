@@ -63,6 +63,7 @@ set(LIB_SOURCES
         src/pfmt/pfmt.c
         src/stdio/sprintf.c
         src/stdlib/atoi.c
+        src/string/strtok.c
         )
 
 add_library(for_libc SHARED ${LIB_SOURCES})

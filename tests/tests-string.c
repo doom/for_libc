@@ -336,6 +336,30 @@ ut_test(memset)
     ut_assert_eq(memset(NULL, '\0', 0), NULL);
 }
 
+ut_test(strtok)
+{
+    const char *results[4] = {"this", "is", "a", "test"};
+    size_t i;
+
+    i = 0;
+    char str1[] = "          this   is a test   ";
+    for (char *token, *s = str1; (token = strtok(s, " ")); s = NULL, ++i) {
+        ut_assert_streq(results[i], token);
+    }
+
+    i = 0;
+    char str2[] = "this   is a test   ";
+    for (char *token, *s = str2; (token = strtok(s, " ")); s = NULL, ++i) {
+        ut_assert_streq(results[i], token);
+    }
+
+    i = 0;
+    char str3[] = "   \nthis   is\na test \n  ";
+    for (char *token, *s = str3; (token = strtok(s, " \n")); s = NULL, ++i) {
+        ut_assert_streq(results[i], token);
+    }
+}
+
 ut_group(string,
          ut_get_test(strcmp),
          ut_get_test(strncmp),
@@ -358,6 +382,7 @@ ut_group(string,
          ut_get_test(mempcpy),
          ut_get_test(memmove),
          ut_get_test(memset),
+         ut_get_test(strtok),
 );
 
 void run_string_tests(void)
