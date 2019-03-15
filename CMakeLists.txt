@@ -4,7 +4,7 @@ project(for_libc)
 
 set(CMAKE_C_STANDARD 11)
 
-set(CMAKE_C_FLAGS "-Wall -Wextra -nostdlib -nostdinc -fno-builtin -O3")
+set(CMAKE_C_FLAGS "-Wall -Wextra -Wundef -Wpointer-arith -nostdlib -nostdinc -fno-builtin -O3")
 
 set(LIB_SOURCES
         include/x86_64/_types/_ptrdiff_t.h
@@ -62,6 +62,7 @@ set(LIB_SOURCES
         include/stdarg.h
         src/pfmt/pfmt.c
         src/stdio/sprintf.c
+        src/stdlib/atoi.c
         )
 
 add_library(for_libc SHARED ${LIB_SOURCES})
@@ -92,6 +93,7 @@ add_executable(for_libc-tests
         tests/tests-ctype.c
         tests/tests-strings.c
         tests/tests-stdio.c
+        tests/tests-stdlib.c
         )
 
 target_include_directories(for_libc-tests SYSTEM PUBLIC include include/x86_64)

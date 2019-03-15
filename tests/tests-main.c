@@ -10,6 +10,7 @@ void run_string_tests(void);
 void run_ctype_tests(void);
 void run_strings_tests(void);
 void run_stdio_tests(void);
+void run_stdlib_tests(void);
 
 int main(void)
 {
@@ -29,5 +30,6 @@ int main(void)
 
     run_stdio_tests();
 
+    run_stdlib_tests();
     return 0;
 }

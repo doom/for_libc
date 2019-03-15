@@ -1,5 +1,5 @@
 
-SRC			=	$(wildcard src/*/*.c)
+SRC				=	$(wildcard src/*/*.c)
 
 SHARED_OBJ		=	$(patsubst src/%.c, build/shared/%.o, $(SRC))
 
@@ -20,39 +20,39 @@ TESTS_LIB		=	libut.a
 TESTS			=	for_libc-tests
 
 CPPFLAGS		=	-isystem include -isystem include/x86_64
-CFLAGS			=	-Wall -Wextra -nostdinc -nostdlib -fno-builtin -O3 -std=gnu11
+CFLAGS			=	-Wall -Wextra -Wundef -Wpointer-arith -nostdinc -nostdlib -fno-builtin -O3 -std=gnu11
 
 build/shared/%.o:	src/%.c
-			@mkdir -p $(shell dirname $@)
-			$(CC) -c -o $@ $(CPPFLAGS) $(CFLAGS) -fPIC $<
+					@mkdir -p $(shell dirname $@)
+					$(CC) -c -o $@ $(CPPFLAGS) $(CFLAGS) -fPIC $<
 
 build/static/%.o:	src/%.c
-			@mkdir -p $(shell dirname $@)
-			$(CC) -c -o $@ $(CPPFLAGS) $(CFLAGS) $<
+					@mkdir -p $(shell dirname $@)
+					$(CC) -c -o $@ $(CPPFLAGS) $(CFLAGS) $<
 
 build/ut/%.o:		lib/ut/src/%.c
-			@mkdir -p $(shell dirname $@)
-			$(CC) -c -o $@ $(CPPFLAGS) -Ilib/ut/include $(CFLAGS) $<
+					@mkdir -p $(shell dirname $@)
+					$(CC) -c -o $@ $(CPPFLAGS) -Ilib/ut/include $(CFLAGS) $<
 
-all:			$(SHARED_LIB) $(STATIC_LIB)
+all:				$(SHARED_LIB) $(STATIC_LIB)
 
 $(STATIC_LIB):		$(STATIC_OBJ)
-			ar rcs $(STATIC_LIB) $(STATIC_OBJ)
+					ar rcs $(STATIC_LIB) $(STATIC_OBJ)
 
 $(SHARED_LIB):		$(SHARED_OBJ)
-			$(CC) -shared -o $(SHARED_LIB) $(SHARED_OBJ)
+					$(CC) -shared -o $(SHARED_LIB) $(SHARED_OBJ)
 
 $(TESTS_LIB):		$(STATIC_LIB) $(UT_OBJ)
-			ar rcs $(TESTS_LIB) $(UT_OBJ)
+					ar rcs $(TESTS_LIB) $(UT_OBJ)
 
-$(TESTS):		$(STATIC_LIB) $(TESTS_LIB)
-			$(CC) $(TESTS_SRC) $(CPPFLAGS) -Ilib/ut/include $(CFLAGS) -Itests/ -o $(TESTS) -L. -lfor_libc-static -lut
+$(TESTS):			$(STATIC_LIB) $(TESTS_LIB)
+					$(CC) $(TESTS_SRC) $(CPPFLAGS) -Ilib/ut/include $(CFLAGS) -Itests/ -o $(TESTS) -L. -lfor_libc-static -lut
 
-tests:			$(TESTS)
+tests:				$(TESTS)
 
 clean:
-			@$(RM) -r build $(STATIC_LIB) $(SHARED_LIB) $(TESTS_LIB) $(TESTS)
+					@$(RM) -r build $(STATIC_LIB) $(SHARED_LIB) $(TESTS_LIB) $(TESTS)
 
-re:			clean all
+re:					clean all
 
-.PHONY:			all clean re
+.PHONY:				all clean re
