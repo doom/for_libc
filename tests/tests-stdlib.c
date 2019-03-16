@@ -41,9 +41,28 @@ ut_test(atol)
 #endif
 }
 
+static int int_cmp(const void *pa, const void *pb)
+{
+    const int *a = pa;
+    const int *b = pb;
+
+    return (*a > *b) - (*b > *a);
+}
+
+ut_test(bsearch)
+{
+    const int arr[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+    for (int i = 0; i < 10; ++i) {
+        const int *ptr1 = bsearch(&i, arr, 10, sizeof(int), &int_cmp);
+        ut_assert_eq(ptr1, arr + i);
+    }
+}
+
 ut_group(stdlib,
          ut_get_test(atoi),
-         ut_get_test(atol)
+         ut_get_test(atol),
+         ut_get_test(bsearch),
 );
 
 void run_stdlib_tests(void)

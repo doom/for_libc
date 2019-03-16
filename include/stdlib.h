@@ -13,4 +13,8 @@ long atol(const char *nptr);
 
 long long atoll(const char *nptr);
 
+void *bsearch(const void *key, const void *base,
+              size_t nmemb, size_t size,
+              int (*compar)(const void *, const void *));
+
 #endif /* !FOR_LIBC_STDLIB_H */

@@ -27,6 +27,7 @@ set(LIB_SOURCES
 
         include/stdlib.h
         src/stdlib/atoi.c
+        src/stdlib/bsearch.c
 
         include/string.h
         src/string/strcmp.c
